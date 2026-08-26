@@ -3,6 +3,7 @@ import mysql2 from 'mysql2'
 import express from 'express';
 import path from 'path';
 import methodOverride from 'method-override';
+import "dotenv/config";
 
 const app = express();
 const port =8080;
@@ -15,10 +16,10 @@ app.use(express.static(path.join(import.meta.dirname,"public")));
 app.use(methodOverride("_method"));
 
 const connection = mysql2.createConnection({
-  host:"localhost",
-  user:"root",
-  database:"sigmaSql",
-  password:"Lakshay@123"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD
 });
 
  let getRandomUser = ()=> {
